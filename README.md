@@ -8,5 +8,6 @@ simple persistent cache for application data, using JS promises
 -  can handle integer keys
 
 ## Caveats
+-  Assumes localStorage capability in browser
 -  Does not check for duplicates, if you try to use objects as keys (since the objects may have different memory instances)
 
