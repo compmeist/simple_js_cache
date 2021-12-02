@@ -28,6 +28,8 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
 
   var gAppCacheNF = new Map(); // Large Global var to hold cache
 
+  /*  SET  */
+
   var setCacheStorageP = function(keyName,theObject) { 
   	return new Promise(function(resolve,reject) {
       gAppCacheNF.set(keyName,theObject);
@@ -36,6 +38,8 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
    });
   }
 
+  /*  GET  */
+  
   var getCacheStorageP = function(keyName) { 
   	return new Promise(function(resolve,reject) {
 	    let rs = {}; 
