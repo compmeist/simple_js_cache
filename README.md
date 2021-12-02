@@ -10,4 +10,4 @@ simple persistent cache for application data, using JS promises
 ## Caveats
 -  Assumes localStorage capability in browser
 -  Does not check for duplicates, if you try to use objects as keys (since the objects may have different memory instances)
-
+-  Should return empty object if doesn't exist in cache (so instead of checking for null, check object length)
