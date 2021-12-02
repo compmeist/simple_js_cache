@@ -4,6 +4,7 @@ simple persistent cache for application data, using JS promises
 ##  Features
 -  lightweight
 -  dual layer ( global Map object and localStorage )
+-  generally non-blocking
 -  can handle integer keys
 
 ## Caveats
