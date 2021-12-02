@@ -1,8 +1,7 @@
 /*  
    2021, N. Frick
 
-  appCacheSimple.js 
-
+ 
   Purpose: a dual-layer cache to see if the data exists in memory (as global var) 
             or browser localStorage (as JSON string)
 
