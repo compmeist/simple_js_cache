@@ -6,7 +6,9 @@
    this is an entry in the methods section of a VueJS2 viewmodel (global var "vm" here) 
       (uses vue-resource for $http.post)
 
-
+   the scenario here is recObjL is a partially "populated" record (some fields or columns are missing) and you want to 
+     mix in some other fields (or columns) that were previously saved in the cache
+     
 */
 
       ,getRecCacheOrPost: function(recObjL) {  
@@ -40,8 +42,8 @@
 
 /*
    ( NOTE: getRecCacheOrPost doesn't work to create a Vue computed, 
-     so populate your Vue data object 
-      using vm.$data.myProperty within the .then resolving function )
+     so populate your Vue data object   (using Object.assign or Vue.set() )
+      by assigning vm.$data.myProperty within the .then resolving function )
 */
 
 
