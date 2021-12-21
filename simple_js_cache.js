@@ -57,7 +57,7 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
   });
  }
 
- /* UPSERT */
+ /* UPSERT (UPDATE) */
   
   // combines(overwrites) existing cache object props with new object props
   //   --> may be used in lieu of setCacheStorageP()
