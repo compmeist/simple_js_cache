@@ -1,7 +1,6 @@
 # simple_js_cache
 simple persistent cache for application data, using JS promises
 (probably not production ready, do not use without modifying)
-  NOTE: localForage.JS version is simple_js_cache_lf.JS, recommended
 
 
 ##  Features
@@ -18,7 +17,9 @@ simple persistent cache for application data, using JS promises
 -  Scope of resolving function may be different (so be wary of using 'this' identifier )
 
 ## Example
-a usage example snippet for a Vue JS project is also included here 
+-a usage example snippet for a Vue JS project is also included here 
+-  NOTE: localForage.JS version is simple_js_cache_lf.JS, recommended
+
 
 ## On Server
 I believe you can replace localStorage/localForage by something else on Node.js
