@@ -1,5 +1,6 @@
 # simple_js_cache
 simple persistent cache for application data, using JS promises
+(probably not production ready, do not use without modifying)
 
 ##  Features
 -  can use integer keys
