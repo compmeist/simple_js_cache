@@ -123,17 +123,18 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
     return new Promise(function(resolve,reject) {
       if (gAppCacheNF.has(keyName)) 
       { var rs = gAppCacheNF.get(keyName);
-        gAppCacheNF.set(keyName,Object.assign(rs,theMixObject));  // combine and save
+        var rsm = Object.assign(rs,theMixObject);
+        gAppCacheNF.set(keyName,rsm);  // combine and save
         // assume consistency here
-        lfAppCacheNF.setItem(keyName,Object.assign(rs,theMixObject)).then(function() {resolve(keyName);});
+        lfAppCacheNF.setItem(keyName,rsm).then(function() {resolve(keyName);});
       }  
       else
       { 
         getLocalStorage4P(keyName).then(
-         function(rs1) { 
-           lfAppCacheNF.setItem(keyName,Object.assign(rs1,theMixObject)).then(
+         function(rs1) { var rsm = Object.assign(rs1,theMixObject);
+           lfAppCacheNF.setItem(keyName,rsm).then(
             function() { 
-              gAppCacheNF.set(keyName,Object.assign(rs1,theMixObject));
+              gAppCacheNF.set(keyName,rsm);
               resolve(keyName);});
           });
       }
