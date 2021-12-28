@@ -1,11 +1,11 @@
 # simple_js_cache
-simple persistent (async) cache for application data, using Map Object and localForage.JS
+simple persistent (async) dual-layer cache for browser application data
 
 
 ##  Features
 -  basic version (simple_js_cache.js) can use integer keys
 -  lightweight ( no time or object age tracking )
--  dual layer ( global Map object and localStorage )
+-  dual layer ( global Map object and localStorage/indexedDB )
 -  generally non-blocking
 
 ## Caveats
