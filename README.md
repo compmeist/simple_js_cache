@@ -1,5 +1,5 @@
 # simple_js_cache
-simple persistent cache for application data, using JS promises
+simple persistent (async) cache for application data, using Map Object and localForage.JS
 
 
 ##  Features
