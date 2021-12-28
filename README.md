@@ -1,9 +1,11 @@
 # simple_js_cache
 simple persistent cache for application data, using JS promises
 (probably not production ready, do not use without modifying)
+  NOTE: localForage.JS version is simple_js_cache_lf.JS, recommended
+
 
 ##  Features
--  can use integer keys
+-  basic version (simple_js_cache.js) can use integer keys
 -  lightweight ( no time or object age tracking )
 -  dual layer ( global Map object and localStorage )
 -  generally non-blocking
