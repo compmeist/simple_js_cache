@@ -21,7 +21,7 @@ simple persistent (async) dual-layer cache for browser application data
 
 ## Example
 -a usage example snippet for a Vue JS project is also included here 
--  NOTE: localForage.JS version is simple_js_cache_lf.JS, recommended
+-  NOTE: indexedDB version is simple_js_cache_LF.JS -> recommended ( uses localForage.JS )
 
 
 ## On Server
