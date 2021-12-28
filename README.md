@@ -21,5 +21,5 @@ simple persistent cache for application data, using JS promises
 a usage example snippet for a Vue JS project is also included here 
 
 ## On Server
-I believe you can replace localStorage by something else on Node.js
+I believe you can replace localStorage/localForage by something else on Node.js
 
