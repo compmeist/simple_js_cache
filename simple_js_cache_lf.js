@@ -15,6 +15,7 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
 
   Implementation comments:  Each routine has a synchronous and async part
 
+    Note: values are intended to be JS objects, e.g. { id: 23, uFld:'uFld23' }
 
  */
 
