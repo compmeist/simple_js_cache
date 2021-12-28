@@ -3,7 +3,7 @@ simple persistent (async) dual-layer cache for browser application data
 
 
 ##  Features
--  basic version (simple_js_cache.js) can use integer keys
+-  can use integer keys
 -  lightweight ( no time or object age tracking )
 -  dual layer ( global Map object and localStorage/indexedDB )
 -  generally non-blocking
