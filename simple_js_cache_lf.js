@@ -1,7 +1,7 @@
 /*  
    2021, N. Frick
 
-  appCacheSimpleForage.js v1.2
+ Version that uses localForage JS
 
   Purpose: a dual-layer cache to see if the data exists in memory (as global var) 
             or browser storage (uses localforage)
