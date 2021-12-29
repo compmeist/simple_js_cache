@@ -28,15 +28,7 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
   lfAppCacheNF.setDriver([localforage.INDEXEDDB,localforage.LOCALSTORAGE]);
 
 
-  function getLocalStorage4P(keyName) { 
-    return new Promise(function(resolve,reject) {
-        lfAppCacheNF.getItem(keyName).then(function(rs) {
-          resolve(rs);
-        },resolve({}));
-    });
-  } 
-
-  
+   
   var setCacheStorageP = function(keyName,theObject) { 
     return new Promise(function(resolve,reject) {
       gAppCacheNF.set(keyName,theObject);
@@ -48,13 +40,19 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
   var getCacheStorageP = function(keyName) { 
   	return new Promise(function(resolve,reject) {
 	    if (gAppCacheNF.has(keyName)) 
-	      resolve(gAppCacheNF.get(keyName));
-	    else
-	    { getLocalStorage4P(keyName).then(
-         function(rs) { gAppCacheNF.set(keyName,rs); // push to faster (global) var
-          resolve(rs); }
+	    {  var rs = gAppCacheNF.get(keyName);
+         if (Object.keys(rs).length > 0) {
+           resolve(rs);
+         }
+      }  
+        lfAppCacheNF.getItem(keyName).then(
+         function(rs) { if (rs == null) rs = {};
+             if (Object.keys(rs).length > 0) { 
+               gAppCacheNF.set(keyName,rs); // push to faster (global) var
+             }  
+            resolve(rs); }
           );
-	    }
+	    
     });
   }
 
@@ -77,8 +75,8 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
               });
          gAppCacheNF.set(keyName,rs);  //save
       }  
-      getLocalStorage4P(keyName).then(
-         function(rs) { 
+      lfAppCacheNF.getItem(keyName).then(
+         function(rs) { if (rs == null) rs = {};
            Object.keys(specObject).forEach(function(key) {
                 try { delete rs[key] } catch (ex) { }
               });
@@ -102,8 +100,8 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
         }
         gAppCacheNF.set(keyName,rs);  //save
       }
-      getLocalStorage4P(keyName).then(
-         function(rs) { 
+      lfAppCacheNF.getItem(keyName).then(
+         function(rs) { if (rs == null) rs = {};
            if (Array.isArray(propNameArray)) {
             var l = propNameArray.length;
             for (var i=0;i<l;i++) {
@@ -130,8 +128,9 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
       }  
       else
       { 
-        getLocalStorage4P(keyName).then(
-         function(rs1) { var rsm = Object.assign(rs1,theMixObject);
+        lfAppCacheNF.getItem(keyName).then(
+         function(rs1) { if (rs1 == null) rs1 = {};
+           var rsm = Object.assign(rs1,theMixObject);
            lfAppCacheNF.setItem(keyName,rsm).then(
             function() { 
               gAppCacheNF.set(keyName,rsm);
@@ -140,3 +139,4 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
       }
    });
   }
+  
