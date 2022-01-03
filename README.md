@@ -10,7 +10,7 @@ simple persistent (async) dual-layer cache for browser application data
 
 ## Caveats
 -  Should return empty object if doesn't exist in cache (so instead of checking for null, check object length)
--  Scope of resolving function may be different (so be wary of using 'this' identifier )
+-  Scope of resolving function may be different (so be wary of using 'this' identifier, or use arrow functions )
 -  Assumes localStorage/IndexedDB capability in browser  ( and assumes ES6 )
 -  Async operation:  may mutate the item (by set or update) before reading (get) is accomplished
 -  May not production ready -> push a fix if you find one
