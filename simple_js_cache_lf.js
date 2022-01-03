@@ -10,8 +10,8 @@
   Details: if not found in Map "gAppCacheNF", it fetches from browser storage
 
 Usage. This is based on promises, so call using the "consuming code" mode (using .then):
-  setCacheStorageP(myKey,myObject).then(function() { console.log('saved');}) 
-  getCacheStorageP(myKey).then(function(theObj) { myItem = theObj; }) 
+  setCacheStorageP(myKey,myObject).then( () => { console.log('saved');} ) 
+  getCacheStorageP(myKey).then( (theObj) => { myItem = theObj; }) 
 
   Implementation comments:  Each routine has a synchronous and async part
 
@@ -29,25 +29,28 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
 
 
    
+  
   var setCacheStorageP = function(keyName,theObject) { 
-    return new Promise(function(resolve,reject) {
+    return new Promise( (resolve,reject) => {
       gAppCacheNF.set(keyName,theObject);
-      lfAppCacheNF.setItem(keyName,theObject).then(function(rs) { resolve(keyName) });
+      lfAppCacheNF.setItem(keyName,theObject).then( 
+        rs =>  { resolve(keyName); } );
     });
   }
 
 
   var getCacheStorageP = function(keyName) { 
-  	return new Promise(function(resolve,reject) {
+  	return new Promise( (resolve,reject) => {
 	    if (gAppCacheNF.has(keyName)) 
 	    {  var rs = gAppCacheNF.get(keyName);
          if (Object.keys(rs).length > 0) {
            resolve(rs);
-         }
+         } 
       }  
         lfAppCacheNF.getItem(keyName).then(
-         function(rs) { if (rs == null) rs = {};
+         rs => { if (rs == null) rs = {};
              if (Object.keys(rs).length > 0) { 
+              //console.log('setting gAppCacheNF using '+ keyName +'...');
                gAppCacheNF.set(keyName,rs); // push to faster (global) var
              }  
             resolve(rs); }
@@ -58,29 +61,29 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
 
   // removes item from cache by keyName
   var deleteCacheStorageP = function(keyName,theObject) { 
-    return new Promise(function(resolve,reject) {
+    return new Promise( (resolve,reject) => {
       gAppCacheNF.delete(keyName);
-      lfAppCacheNF.removeItem(keyName).then(function() {resolve(keyName); });
+      lfAppCacheNF.removeItem(keyName).then( () => { resolve(keyName); });
     });
   }
 
   // deletes from existing cache item props that are in specObject
   var deletePropObjCacheStorageP = function(keyName,specObject) { 
-    return new Promise(function(resolve,reject) {
+    return new Promise( (resolve,reject) => {
       if (gAppCacheNF.has(keyName)) 
       {  rs = gAppCacheNF.get(keyName);
               // delete props given in specObject
-         Object.keys(specObject).forEach(function(key) {
+         Object.keys(specObject).forEach( (key) => {
                 try { delete rs[key] } catch (ex) { }
               });
          gAppCacheNF.set(keyName,rs);  //save
       }  
       lfAppCacheNF.getItem(keyName).then(
-         function(rs) { if (rs == null) rs = {};
-           Object.keys(specObject).forEach(function(key) {
+         rs => { if (rs == null) rs = {};
+           Object.keys(specObject).forEach( (key) => {
                 try { delete rs[key] } catch (ex) { }
               });
-           lfAppCacheNF.setItem(keyName,rs).then(function() {resolve(keyName);});
+           lfAppCacheNF.setItem(keyName,rs).then( () => { resolve(keyName); });
           }
           );
     });
@@ -88,7 +91,7 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
 
   // deletes from existing cache item props that are specified by propNameArray
   var deletePropNameCacheStorageP = function(keyName,propNameArray) { 
-    return new Promise(function(resolve,reject) {
+    return new Promise((resolve,reject) => {
       if (gAppCacheNF.has(keyName)) 
       {  rs = gAppCacheNF.get(keyName);
         // delete
@@ -101,14 +104,14 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
         gAppCacheNF.set(keyName,rs);  //save
       }
       lfAppCacheNF.getItem(keyName).then(
-         function(rs) { if (rs == null) rs = {};
+         rs => { if (rs == null) rs = {};
            if (Array.isArray(propNameArray)) {
             var l = propNameArray.length;
             for (var i=0;i<l;i++) {
               try { delete rs[propNameArray[i]] } catch (ex) { }
             }
            }
-           lfAppCacheNF.setItem(keyName,rs).then(function() {resolve(keyName);});
+           lfAppCacheNF.setItem(keyName,rs).then( () => {resolve(keyName); });
           }
           );
  
@@ -118,25 +121,22 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
   // combines(overwrites) existing cache object props with new object props
 
   var upsertCacheStorageP = function(keyName,theMixObject) { 
-    return new Promise(function(resolve,reject) {
+    return new Promise( (resolve,reject) => {
       if (gAppCacheNF.has(keyName)) 
       { var rs = gAppCacheNF.get(keyName);
         var rsm = Object.assign(rs,theMixObject);
         gAppCacheNF.set(keyName,rsm);  // combine and save
         // assume consistency here
-        lfAppCacheNF.setItem(keyName,rsm).then(function() {resolve(keyName);});
+        lfAppCacheNF.setItem(keyName,rsm).then( rs => { resolve(rs); });
       }  
       else
       { 
         lfAppCacheNF.getItem(keyName).then(
-         function(rs1) { if (rs1 == null) rs1 = {};
+         (rs1) => { if (rs1 == null) rs1 = {};
            var rsm = Object.assign(rs1,theMixObject);
            lfAppCacheNF.setItem(keyName,rsm).then(
-            function() { 
-              gAppCacheNF.set(keyName,rsm);
-              resolve(keyName);});
+             rs => { resolve(rs); });
           });
       }
    });
   }
-  
