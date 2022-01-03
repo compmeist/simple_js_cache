@@ -15,24 +15,23 @@
         // promise will resolve an object to mixin
         return new Promise(function(resolve1,reject1) {
           if (!('ID' in recObjL)) reject1({}); // safety check
-          getCacheStorageP(recObjL.ID).then(function(rObj,kN) { // query the cache using record ID
-            if (Object.keys(rObj).length > 0) {
+          getCacheStorageP(recObjL.ID).then((rObj) => { // query the cache using record ID
+            if (Object.keys(rObj).length > 0) { // ( more than zero props in object)
               resolve1(rObj);  // found in cache!
             } else { // not in cache, so get from server 
               let daPostData = { requestID: recObjL.ID };
-              // must use vm.$http here, not this.$http
-              vm.$http.post('/requestAPIs/qj_sel_request.cfm',daPostData).then(
-                function (response) { 
+              this.$http.post('/requestAPIs/qj_sel_request.cfm',daPostData).then(
+                 (response) => { 
                   var recObjAry = response.body;
                   if (recObjAry.length > 0)
                   { var retObj = recObjAry[0];
                     if ('ID' in retObj) // save to cache using record ID
-                    { setCacheStorageP(retObj.ID,retObj).then(function() { }); }
+                    { setCacheStorageP(retObj.ID,retObj).then(() => { }); }
                     resolve1(retObj); 
                   } 
                   else { resolve1({}); }; // don't return null, but empty object
                }
-               ,function (err) {
+               ,(err) => {
                  reject1(err); // (there was a POST error)
                });            
             }
@@ -43,7 +42,7 @@
 /*
    ( NOTE: getRecCacheOrPost doesn't work to create a Vue computed, 
      so populate your Vue data object   (using Object.assign or Vue.set() )
-      by assigning vm.$data.myProperty within the .then resolving function )
+      by assigning vue data within the .then resolving function )
 */
 
 
