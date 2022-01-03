@@ -3,7 +3,6 @@ simple persistent (async) dual-layer cache for browser application data
 
 
 ##  Features
--  can use integer keys
 -  lightweight ( no time or object age tracking )
 -  dual layer ( global Map object and localStorage/indexedDB )
 -  generally non-blocking
