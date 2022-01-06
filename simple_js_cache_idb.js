@@ -156,7 +156,7 @@ import { get as idbGet, set as idbSet, getMany as idbGetMany,
    });
   }
 
-/*  the idbUpsert function is analogous to this snippet:
+/*  the idbUpsert function is analogous to this snippet (which, as of today, is not merged into idb-keyval project):
 
 function f2(n, r ,rarg_extra) {
     var e = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : u();
