@@ -20,7 +20,7 @@ simple persistent (async) dual-layer cache for browser application data
 
 
 ## Example
--a usage example snippet for a Vue JS project is also included here 
+-  a usage example snippet for a Vue JS project is also included here 
 -        recommended version is simple_js_cache_idb.js ( uses idb-keyval.JS )
 
 
