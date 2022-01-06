@@ -12,6 +12,8 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
   getCacheStorageP(myKey).then(function(theObj) { myItem = theObj; }); 
   
   Note - since this is async: set,upsert, and delete may happen before you expect.
+  
+     ( This is the slower, localStorage version.)
 
  */
 
