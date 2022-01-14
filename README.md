@@ -18,6 +18,17 @@ simple persistent (async) dual-layer cache for browser application data
 ## Obscure Caveats
 -  Does not check for duplicates, if you try to use objects as keys (since the objects may have different memory instances)
 
+## Basic Functions
+-  testCacheStorageP 
+`
+testCacheStorageP().then(()=>{console.log('browser uses indexedDb.');})
+  .catch((err)=>{alert('This browser is not supporting indexedDb! Please use an ES6 compliant browser. Close tab.')});
+`
+- setCacheStorageP
+- getCacheStorageP
+- upsertCacheStorageP
+- deleteCacheStorageP
+  
 
 ## Example
 -  a usage example snippet for a Vue JS project is also included here 
