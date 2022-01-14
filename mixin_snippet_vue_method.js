@@ -43,6 +43,7 @@
    ( NOTE: getRecCacheOrPost doesn't work to create a Vue computed, 
      so populate your Vue data object   (using Object.assign or Vue.set() )
       by assigning vue data within the .then resolving function )
+      or use Observables or something
 */
 
 
