@@ -13,7 +13,7 @@ simple persistent (async) dual-layer cache for browser application data
 -  Should return empty object if doesn't exist in cache (so instead of checking for null, check object length)
 -  Scope of resolving function may be different (so be wary of using 'this' identifier, or use arrow functions! )
 -  Async operation:  may mutate the item (by set or update) before reading (get) is accomplished
--  May not be production ready -> fix it if you find something
+-  May not be production ready -> suggest a fix it if you find something
 
 ## Obscure Caveats
 -  Does not check for duplicates, if you try to use objects as keys (since the objects may have different memory instances)
