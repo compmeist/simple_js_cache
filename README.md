@@ -20,6 +20,7 @@ simple persistent (async) dual-layer cache for browser application data
 
 ## Basic Functions
 -  testCacheStorageP 
+
 `
 testCacheStorageP().then(()=>{console.log('browser uses indexedDb.');})
   .catch((err)=>{alert('This browser is not supporting indexedDb! Please use an ES6 compliant browser. Close tab.')});
