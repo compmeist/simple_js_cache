@@ -88,7 +88,7 @@ import { get as idbGet, set as idbSet, getMany as idbGetMany,
   }
 
   // removes item from cache by keyName
-  export function deleteCacheStorageP (keyName,theObject) { 
+  export function deleteCacheStorageP (keyName) { 
     return new Promise( (resolve,reject) => {
       gAppCacheNF.delete(keyName);
       var keyAry = []; keyAry.push(keyName);
