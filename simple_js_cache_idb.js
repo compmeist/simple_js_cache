@@ -162,5 +162,15 @@ function appendCallbackArgs(callback, ...extraArgs) {
    });
   }
 
+  export function testCacheStorageP () {
+    return new Promise( (resolve,reject) => {
+    idbSetMany([
+        ['testCache', 1]
+      ])
+        .then(() => {resolve();})
+        .catch((err)=>{reject(err);});
+        });
+  }  
+
 
 
