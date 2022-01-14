@@ -81,7 +81,7 @@ Usage. This is based on promises, so call using the "consuming code" mode (using
   /* DELETE */
   
   // removes item from cache by keyName
-  var deleteCacheStorageP = function(keyName,theObject) {
+  var deleteCacheStorageP = function(keyName) {
     return new Promise(function(resolve,reject) {
       gAppCacheNF.delete(keyName);
       localStorage.removeItem(keyName);
