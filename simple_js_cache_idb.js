@@ -142,6 +142,11 @@ import { get as idbGet, set as idbSet, getMany as idbGetMany,
    });
   }
 
+
+function appendCallbackArgs(callback, ...extraArgs) {   
+  return (...args) => callback(...args, ...extraArgs);  // suggested by Jake A.
+}
+
   // combines(overwrites) existing cache object props with new object props
 
   export function upsertCacheStorageP (keyName,theMixObject) { 
@@ -152,26 +157,9 @@ import { get as idbGet, set as idbSet, getMany as idbGetMany,
         gAppCacheNF.set(keyName,rsm);  // combine and save
       } 
       var idbUpdateF = (v,mxObj)=>(Object.assign({},(v || {}),mxObj));
-      idbUpsert(keyName,idbUpdateF,theMixObject );
+      idbUpdate(keyName,appendCallbackArgs(idbUpdateF,theMixObject) ); // use appendCallbackArgs wrapper
    });
   }
 
-/*  the idbUpsert function is analogous to this snippet (which, as of today, is not merged into idb-keyval project):
 
-function f2(n, r ,rarg_extra) {
-    var e = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : u();
-    return e("readwrite", (function(e) {
-        return new Promise((function(u, o) {
-            e.get(n).onsuccess = function() {
-                try {
-                    e.put(r(this.result,rarg_extra), n), u(t(e.transaction))
-                } catch (n) {
-                    o(n)
-                }
-            }
-        }))
-    }))
-}
-
-*/
 
