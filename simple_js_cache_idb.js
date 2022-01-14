@@ -21,7 +21,7 @@ Usage: This is based on promises, so call using the "consuming code" mode (using
 import { get as idbGet, set as idbSet, getMany as idbGetMany, 
     setMany as idbSetMany, delMany as idbDelMany, update as idbUpdate, 
     entries as idbEntries, keys as idbKeys, values as idbValues,
-    upsert as idbUpsert } from 'idb-keyval_w_upsert.js';
+    upsert as idbUpsert } from 'idb-keyval.js';
 
 
   var gAppCacheNF = new Map(); // Large Global var to hold cache
@@ -157,7 +157,8 @@ function appendCallbackArgs(callback, ...extraArgs) {
         gAppCacheNF.set(keyName,rsm);  // combine and save
       } 
       var idbUpdateF = (v,mxObj)=>(Object.assign({},(v || {}),mxObj));
-      idbUpdate(keyName,appendCallbackArgs(idbUpdateF,theMixObject) ); // use appendCallbackArgs wrapper
+      idbUpdate(keyName,appendCallbackArgs(idbUpdateF,theMixObject) )  // use appendCallbackArgs wrapper
+	      .then( ()=>{ resolve(); } ); 
    });
   }
 
