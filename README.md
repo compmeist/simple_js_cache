@@ -1,5 +1,5 @@
 # simple_js_cache
-simple persistent (async) dual-layer cache for browser application data
+fast and simple persistent (async) dual-layer cache for ES6 browser application data
 
 
 ##  Features
