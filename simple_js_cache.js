@@ -1,9 +1,11 @@
 /*  
    2021, N. Frick
 
+ (THIS IS NOT THE RECOMMENDED VERSION)
  
-  Purpose: a dual-layer cache to see if the data exists in memory (as global var) 
-            or browser localStorage (as JSON string)
+  Purpose: a dual-layer cache 
+          Layer 1. in memory (as global var) 
+          Layer 2.  or browser localStorage (as JSON string)
 
   Details: if not found in Map "gAppCacheNF", it fetches from localStorage 
 
