@@ -1,12 +1,13 @@
 # simple_js_cache
-fast and simple persistent (async) dual-layer cache for ES6 browser application data
+fast and simple persistent (async and sync) dual-layer cache for ES6 browser application data
 
 
 ##  Features
 -  can handle integer keys
 -  lightweight ( no time or object age tracking )
--  dual layer ( global Map object and indexedDB )
+-  dual layer ( Map() object and indexedDB )
 -  generally non-blocking
+-  quick sync reads are available, if the item has already been read 
 
 ## Caveats
 -  Assumes localStorage/IndexedDB capability in browser  ( and assumes ES6 )
@@ -41,7 +42,11 @@ testCacheStorageP().then( ()=>{ console.log('browser uses indexedDb.');})
 
 `delCacheStorageP(22);`
 
-  
+## Synchronous Usage - direct read of Level 1 cache map
+
+- getCacheStorageL1
+
+`var myData = getCacheStorageL1(22)`
 
 ## Example
 -  a usage example snippet for a Vue JS project is also included here 
