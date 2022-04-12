@@ -54,5 +54,5 @@ testCacheStorageP().then( ()=>{ console.log('browser uses indexedDb.');})
 
 
 ## On Server
-I believe you can modify for use in Node.js
+This is an frontend module - I believe it could modified for use in Node.js
 
