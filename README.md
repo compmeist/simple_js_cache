@@ -1,4 +1,4 @@
-# simple_js_cache
+# simple_js_cache_idb
 fast and simple persistent (async and sync) dual-layer cache for ES6 browser application data
 
 
