@@ -17,7 +17,7 @@ fast and simple persistent (async and sync) dual-layer cache for ES6 browser app
 -  May not be production ready -> suggest a fix it if you find something
 
 ## Obscure Caveats
--  Does not check for duplicates, if you try to use objects as keys (since the objects may have different memory instances)
+-  Does not check for duplicates, there will be unexpected behavior if you try to use objects as keys (since the objects may have different memory instances)
 
 ## Basic Functions and Possible Usage
 -  testCacheStorageP 
