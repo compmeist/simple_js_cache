@@ -1,13 +1,14 @@
 /* 
    N. Frick, 2021
    
-   Purpose: a dual-layer cache to see if the data exists in memory (as global var) 
-            or browser storage (uses idb-keyval with an added upsert - or extra param update - function )
+   Purpose: a fast, simple dual-layer cache 
+             Level l. Map() Object
+	     Level 2. Browser storage (uses idb-keyval)
 
 
-  Details: if not found in Map "gAppCacheNF", it fetches from browser storage
 
-Usage: This is based on promises, so call using the "consuming code" mode (using .then):
+Example usage: 
+This is based on promises, so call using the "consuming code" mode (using .then):
   setCacheStorageP(myKey,myObject).then(function() { console.log('saved');}) 
   getCacheStorageP(myKey).then(function(theObj) { myItem = theObj; }) 
   
@@ -142,7 +143,7 @@ import { get as idbGet, set as idbSet, getMany as idbGetMany,
    });
   }
 
-
+// a general utility function
 function appendCallbackArgs(callback, ...extraArgs) {   
   return (...args) => callback(...args, ...extraArgs);  // suggested by Jake A.
 }
@@ -162,6 +163,8 @@ function appendCallbackArgs(callback, ...extraArgs) {
    });
   }
 
+// quick test for browser support
+
   export function testCacheStorageP () {
     return new Promise( (resolve,reject) => {
     idbSetMany([
@@ -172,5 +175,13 @@ function appendCallbackArgs(callback, ...extraArgs) {
         });
   }  
 
+// synch read from cache
+
+export function getCacheStorageL1 (keyName) {
+    if (gAppCacheNF.has(keyName))
+      return gAppCacheNF.get(keyName);
+    else 
+      return {};
+  }
 
 
